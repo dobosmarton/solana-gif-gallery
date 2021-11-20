@@ -28,7 +28,7 @@ export const CreateAccountModal: React.FunctionComponent<Props> = ({ isOpen, set
 
           {/* This element is to trick the browser into centering the modal contents. */}
           <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
-            &#8203;
+            `&#8203;`
           </span>
           <Transition.Child
             as={Fragment}
