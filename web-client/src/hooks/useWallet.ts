@@ -1,24 +1,13 @@
 import { useEffect, useState } from 'react';
-
-type ExtendedWindow = Window & typeof globalThis & { solana: any };
+import { ExtendedWindow } from '../services/solana';
 
 type UseWallettHook = () => {
   walletAddress: string | null;
-  gifList: string[];
   connectWallet: () => Promise<void>;
 };
 
-const TEST_GIFS = [
-  'https://i.giphy.com/media/eIG0HfouRQJQr1wBzz/giphy.webp',
-  'https://media3.giphy.com/media/L71a8LW2UrKwPaWNYM/giphy.gif?cid=ecf05e47rr9qizx2msjucl1xyvuu47d7kf25tqt2lvo024uo&rid=giphy.gif&ct=g',
-  'https://media4.giphy.com/media/AeFmQjHMtEySooOc8K/giphy.gif?cid=ecf05e47qdzhdma2y3ugn32lkgi972z9mpfzocjj6z1ro4ec&rid=giphy.gif&ct=g',
-  'https://i.giphy.com/media/PAqjdPkJLDsmBRSYUp/giphy.webp',
-];
-
 export const useWallet: UseWallettHook = () => {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
-
-  const [gifList, setGifList] = useState<string[]>([]);
 
   /*
    * This function holds the logic for deciding if a Phantom Wallet is
@@ -66,17 +55,6 @@ export const useWallet: UseWallettHook = () => {
     }
   };
 
-  useEffect(() => {
-    if (walletAddress) {
-      console.log('Fetching GIF list...');
-
-      // Call Solana program here.
-
-      // Set state
-      setGifList(TEST_GIFS);
-    }
-  }, [walletAddress]);
-
   /*
    * When our component first mounts, let's check to see if we have a connected
    * Phantom Wallet
@@ -86,5 +64,5 @@ export const useWallet: UseWallettHook = () => {
     return () => window.removeEventListener('load', checkIfWalletIsConnected);
   }, []);
 
-  return { walletAddress, gifList, connectWallet };
+  return { walletAddress, connectWallet };
 };

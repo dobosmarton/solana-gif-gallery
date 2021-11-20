@@ -1,6 +1,7 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { Button } from '../buttons/button';
 
-export const GifLink = () => {
+export const GifLink: React.FunctionComponent = () => {
   const [inputValue, setInputValue] = useState('');
 
   const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -32,11 +33,9 @@ export const GifLink = () => {
           onChange={onInputChange}
         />
       </div>
-      <button
-        type="submit"
-        className="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+      <Button type="submit" onClick={() => ({})}>
         Submit
-      </button>
+      </Button>
     </form>
   );
 };
