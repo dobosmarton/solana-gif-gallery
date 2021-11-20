@@ -46,6 +46,7 @@ const Home: NextPage = () => {
                           {gifList.map((item) => (
                             <div className="flex flex-col justify-self-center self-center" key={item.gifLink}>
                               <img src={item.gifLink} />
+                              <span>{item.userAddress.toString()}</span>
                             </div>
                           ))}
                         </div>

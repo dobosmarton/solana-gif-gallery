@@ -11,6 +11,7 @@ export enum ACCOUNT_ERROR {
 
 type GifItem = {
   gifLink: string;
+  userAddress: string;
 };
 
 type UseWallettHook = (walletAddress: string | null) => {
