@@ -1,18 +1,18 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import { Button } from '../buttons/button';
 
-export const GifLink: React.FunctionComponent = () => {
-  const [inputValue, setInputValue] = useState('');
+type Props = {
+  onSubmit: (inputValue: string) => Promise<void>;
+};
 
-  const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setInputValue(value);
-  };
+export const GifLink: React.FunctionComponent<Props> = ({ onSubmit }) => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const sendGif = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (inputValue.length > 0) {
-      console.log('Gif link:', inputValue);
+    if (inputRef.current?.value) {
+      console.log('Gif link:', inputRef.current?.value);
+      onSubmit(inputRef.current.value);
     } else {
       console.log('Empty input. Try again.');
     }
@@ -25,12 +25,11 @@ export const GifLink: React.FunctionComponent = () => {
           Gif link
         </label>
         <input
+          ref={inputRef}
           name="link"
           id="link"
           className="w-64 p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md"
           placeholder="Enter gif link!"
-          value={inputValue}
-          onChange={onInputChange}
         />
       </div>
       <Button type="submit" onClick={() => ({})}>

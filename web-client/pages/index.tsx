@@ -11,7 +11,7 @@ import { Button } from '../src/components/buttons/button';
 
 const Home: NextPage = () => {
   const { walletAddress, connectWallet } = useWallet();
-  const { notExistingAccount, createGifAccount, gifList } = useAccount(walletAddress);
+  const { notExistingAccount, createGifAccount, gifList, sendGif } = useAccount(walletAddress);
 
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -41,7 +41,7 @@ const Home: NextPage = () => {
                     {notExistingAccount && <Button onClick={createGifAccount}>Create account</Button>}
                     {!notExistingAccount && (
                       <>
-                        <GifLinkForm />
+                        <GifLinkForm onSubmit={sendGif} />
                         <div className="grid grid-cols-3 gap-2 justify-center">
                           {gifList.map((item) => (
                             <div className="flex flex-col justify-self-center self-center" key={item.gifLink}>

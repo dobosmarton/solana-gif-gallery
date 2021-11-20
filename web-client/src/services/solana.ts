@@ -1,19 +1,20 @@
 import { Connection, PublicKey, clusterApiUrl, Commitment } from '@solana/web3.js';
-import { AccountClient, Idl, IdlTypes, Program, Provider, web3 } from '@project-serum/anchor';
+import { Idl, IdlTypes, Program, Provider, web3 } from '@project-serum/anchor';
 
 import idl from '../../idl.json';
 import { TypeDef } from '@project-serum/anchor/dist/cjs/program/namespace/types';
 import { IdlTypeDef } from '@project-serum/anchor/dist/cjs/idl';
+import { getKeyFromFile } from '../utils/keys';
 
 type Opts = {
   preflightCommitment: Commitment;
 };
 
 // SystemProgram is a reference to the Solana runtime!
-const { SystemProgram, Keypair } = web3;
+const { SystemProgram } = web3;
 
 // Create a keypair for the account that will hold the GIF data.
-const baseAccount = Keypair.generate();
+const baseAccount = getKeyFromFile();
 
 // Get our program's id from the IDL file.
 const programID = new PublicKey(idl.metadata.address);
@@ -80,4 +81,16 @@ export const getOrCreateAccount = async (): Promise<TypeDef<IdlTypeDef, IdlTypes
   await createAccount();
 
   return program.account.baseAccount.fetch(baseAccount.publicKey);
+};
+
+export const createGif = async (gifLink: string): Promise<string> => {
+  const provider = getProvider();
+  const program = getProgram(provider);
+
+  return program.rpc.addGif(gifLink, {
+    accounts: {
+      baseAccount: baseAccount.publicKey,
+      user: provider.wallet.publicKey,
+    },
+  });
 };
