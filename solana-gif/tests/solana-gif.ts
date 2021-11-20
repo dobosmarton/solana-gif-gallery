@@ -46,4 +46,30 @@ describe('solana-gif', () => {
 
     assert.strictEqual(account.totalGifs.toString(), '0', 'The initial gif count is not 0');
   });
+
+  it('should update the GIF counter', async () => {
+    // Create an account keypair for our program to use.
+    const baseAccount = anchor.web3.Keypair.generate();
+
+    // Call start_stuff_off, pass it the params it needs!
+    await program.rpc.initialize({
+      accounts: {
+        baseAccount: baseAccount.publicKey,
+        user: provider.wallet.publicKey,
+        systemProgram: SystemProgram.programId,
+      },
+      signers: [baseAccount],
+    });
+
+    await program.rpc.addGif({
+      accounts: {
+        baseAccount: baseAccount.publicKey,
+      },
+    });
+
+    // Fetch data from the account.
+    const account = await program.account.baseAccount.fetch(baseAccount.publicKey);
+
+    assert.strictEqual(account.totalGifs.toString(), '1', 'The updated gif count is not 1');
+  });
 });
