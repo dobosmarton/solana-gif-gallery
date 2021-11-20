@@ -61,9 +61,10 @@ describe('solana-gif', () => {
       signers: [baseAccount],
     });
 
-    await program.rpc.addGif({
+    await program.rpc.addGif('insert_a_giphy_link_here', {
       accounts: {
         baseAccount: baseAccount.publicKey,
+        user: provider.wallet.publicKey,
       },
     });
 
@@ -71,5 +72,8 @@ describe('solana-gif', () => {
     const account = await program.account.baseAccount.fetch(baseAccount.publicKey);
 
     assert.strictEqual(account.totalGifs.toString(), '1', 'The updated gif count is not 1');
+
+    const firstGif = account.gifList[0];
+    assert.strictEqual(firstGif.gifLink, 'insert_a_giphy_link_here', 'The GIF links are not the same'!);
   });
 });
