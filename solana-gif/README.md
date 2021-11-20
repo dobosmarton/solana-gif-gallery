@@ -48,7 +48,7 @@ This is the Solana program bootstrapped with [`Anchor`](https://github.com/proje
 
    ```bash
    anchor build
-   solana address -k target/deploy/myepicproject-keypair.json
+   solana address -k target/deploy/solana_gif-keypair.json
    ```
 
    Update Anchor.toml and lib.rs with new program id.

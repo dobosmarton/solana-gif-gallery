@@ -1,11 +1,11 @@
-[programs.localnet]
-solana_gif = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+[programs.devnet]
+solana_gif = "7bmWgGchexe5BnsqCHs4PCKKpmt7AZyYhCXEny7Sy51X"
 
 [registry]
 url = "https://anchor.projectserum.com"
 
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "/Users/marci/.config/solana/id.json"
 
 [scripts]
