@@ -32,7 +32,7 @@ export const GifLink: React.FunctionComponent<Props> = ({ onSubmit }) => {
           placeholder="Enter gif link!"
         />
       </div>
-      <Button type="submit" onClick={() => ({})}>
+      <Button type="submit" className="ml-2">
         Submit
       </Button>
     </form>

@@ -2,7 +2,7 @@ const navigation = {
   social: [
     {
       name: 'Instagram',
-      href: '#',
+      href: 'https://www.instagram.com/marton.dobos/',
       icon: (props: any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -24,7 +24,7 @@ const navigation = {
     },
     {
       name: 'GitHub',
-      href: '#',
+      href: 'https://github.com/dobosmarton',
       icon: (props: any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -49,7 +49,9 @@ export const Footer = () => (
           </a>
         ))}
       </div>
-      <p className="mt-8 text-center text-base text-gray-400">&copy; 2020 Workflow, Inc. All rights reserved.</p>
+      <p className="mt-8 text-center text-base text-gray-400">
+        Based on an awesome <a href="https://buildspace.so/">buildspace.so</a> project
+      </p>
     </div>
   </footer>
 );

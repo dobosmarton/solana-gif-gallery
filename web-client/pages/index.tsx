@@ -32,7 +32,7 @@ const Home: NextPage = () => {
           <div className="flex justify-center pt-20">
             <div>
               <div className="flex flex-col items-center">
-                <p className="text-2xl font-bold my-4">🖼 Awesome GIF Portal</p>
+                <p className="text-2xl font-bold my-4">Awesome GIF Portal</p>
                 <p className="sub-text my-4">View your GIF collection in the metaverse ✨</p>
                 {!walletAddress && <ConnectWallet onClick={connectWallet} />}
 
@@ -42,7 +42,7 @@ const Home: NextPage = () => {
                     {!notExistingAccount && (
                       <>
                         <GifLinkForm onSubmit={sendGif} />
-                        <div className="grid grid-cols-3 gap-2 justify-center">
+                        <div className="relative grid grid-cols-3 gap-6 justify-center">
                           {gifList.map((item) => (
                             <div className="flex flex-col justify-self-center self-center" key={item.gifLink}>
                               <img src={item.gifLink} alt="gif image" />
